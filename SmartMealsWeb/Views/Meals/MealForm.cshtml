@@ -1,0 +1,37 @@
+﻿@model SmartMealsWeb.ViewModel.MealViewModel
+@{
+    ViewBag.Title = "MealForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Meal</h2>
+
+@using (Html.BeginForm("NewMeal", "Meal"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.meal.Name)
+        @Html.TextBoxFor(m => m.meal.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.meal.Name)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.meal.DatePosted)
+        @Html.TextBoxFor(m => m.meal.DatePosted, "{0:d MM YYYY }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.meal.DatePosted)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.meal.Description)
+        @Html.TextAreaFor(m => m.meal.Description, 10, 15, null)
+        @Html.ValidationMessageFor(m => m.meal.Name)
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+
+}

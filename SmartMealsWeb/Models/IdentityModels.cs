@@ -20,6 +20,11 @@ namespace SmartMealsWeb.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Friend> Friends { get; set; }
+        public DbSet<Meal> Meals { get; set; }
+        public DbSet<Comment> Comments { get; set;}
+        public DbSet<MealPlanType> MealPlanTypes { get; set; }
+        public DbSet<MealType> MealTypes { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

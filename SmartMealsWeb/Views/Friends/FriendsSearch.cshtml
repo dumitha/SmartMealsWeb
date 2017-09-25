@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SmartMealsWeb.Models.Friend>
+@{
+    ViewBag.Title = "SearchFriend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Friends Search</h2>
+
+
+@if (!Model.Any())
+{
+    <p>Friends search returned 0 results.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Friend</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var friend in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(friend.Name, "FriendForm", "Friends", new { id = friend.Id }, null)</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,18 @@
+﻿@model SmartMealsWeb.ViewModel.MealViewModel
+@{
+    ViewBag.Title = "ViewMeals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Meals</h2>
+
+<ul>
+    @foreach (var meal in Model.meals)
+    {
+        
+            <li>@meal.Name</li>
+            <li>@meal.Type</li>
+            <li>@meal.Description</li>
+            
+    }
+</ul>

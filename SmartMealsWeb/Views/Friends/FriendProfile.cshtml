@@ -1,0 +1,15 @@
+﻿@model SmartMealsWeb.ViewModel.FriendFormViewModel
+@{
+    ViewBag.Title = Model.Friend.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Friend.Name</h2>
+
+<ul>
+    <li>Meal Plan: @Model.Friend.MealPlanType.Name</li>
+    @if (Model.Friend.Birthdate.HasValue)
+    {
+        <li>Birthdate: @Model.Friend.Birthdate.Value.ToShortDateString()</li>
+    }
+</ul>
