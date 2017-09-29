@@ -88,6 +88,7 @@ namespace SmartMealsWeb.Controllers
 
         //Can only be called using http post & never using http get
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Friend friend)
         {
             if (!ModelState.IsValid)

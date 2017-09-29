@@ -1,18 +1,35 @@
-﻿@model SmartMealsWeb.ViewModel.MealViewModel
-@{
-    ViewBag.Title = "ViewMeals";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
+@model IEnumerable<SmartMealsWeb.Models.Meal>
 
-<h2>Meals</h2>
-
-<ul>
-    @foreach (var meal in Model.meals)
-    {
-        
-            <li>@meal.Name</li>
-            <li>@meal.Type</li>
-            <li>@meal.Description</li>
-            
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
-</ul>
+
+    <h2>Meals</h2>
+    @if (!Model.Any())
+    {
+        <p>You don't have any Meals yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Meal</th>
+                    <th>Meal Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var meal in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(meal.Name, "Index", "Meals", new { id = meal.Id }, null)</td>
+                        <td>@meal.MealType.Name</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }

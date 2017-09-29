@@ -277,6 +277,18 @@
     <Compile Include="Migrations\201709230146216_MealType2.Designer.cs">
       <DependentUpon>201709230146216_MealType2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709290408242_AddingMealTypes.cs" />
+    <Compile Include="Migrations\201709290408242_AddingMealTypes.Designer.cs">
+      <DependentUpon>201709290408242_AddingMealTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709290441546_RemovedTypeInMeal.cs" />
+    <Compile Include="Migrations\201709290441546_RemovedTypeInMeal.Designer.cs">
+      <DependentUpon>201709290441546_RemovedTypeInMeal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709290455419_fixMealType.cs" />
+    <Compile Include="Migrations\201709290455419_fixMealType.Designer.cs">
+      <DependentUpon>201709290455419_fixMealType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -420,6 +432,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709230146216_MealType2.resx">
       <DependentUpon>201709230146216_MealType2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290408242_AddingMealTypes.resx">
+      <DependentUpon>201709290408242_AddingMealTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290441546_RemovedTypeInMeal.resx">
+      <DependentUpon>201709290441546_RemovedTypeInMeal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290455419_fixMealType.resx">
+      <DependentUpon>201709290455419_fixMealType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

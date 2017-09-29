@@ -14,7 +14,7 @@ namespace SmartMealsWeb.Models
 
         public int Id { get; set; }
 
-        public string Type { get; set; }
+        //public string Type { get; set; }
 
         public string Description { get; set; }
 
@@ -22,7 +22,8 @@ namespace SmartMealsWeb.Models
         //public DateTime? DatePosted { get; set; }
         public DateTime DatePosted = DateTime.Now;
 
-        public MealType MealTypes { get; set; }
+        public MealType MealType { get; set; }
+
         [Display(Name = "Breakfast, Lunch or Dinner?")]
         public byte MealTypeID { get; set; }
 

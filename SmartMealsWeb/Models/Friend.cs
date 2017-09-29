@@ -13,10 +13,13 @@ namespace SmartMealsWeb.Models
 
         //will get initialized to 0
         public int Id { get; set; }
+
+        
         [Display (Name = "Are you competing with friends?")]
         public bool IsCompetingWithOtherUsers { get; set; }
         
         public MealPlanType MealPlanType { get; set; }
+
         [Display(Name = "Meal Plan")]
         public byte MealPlanTypeID { get; set; }
 
