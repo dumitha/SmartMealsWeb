@@ -10,11 +10,11 @@ using System.Data.Entity.Validation;
 
 namespace SmartMealsWeb.Controllers
 {
-    public class FriendsController : Controller
+    public class FriendController : Controller
     {
         private ApplicationDbContext _context;
 
-        public FriendsController()
+        public FriendController()
         {
             _context = new ApplicationDbContext();
         }

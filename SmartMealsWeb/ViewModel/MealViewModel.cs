@@ -11,5 +11,10 @@ namespace SmartMealsWeb.ViewModel
     {
         public Meal Meal { get; set; }
         public List<Meal> Meals {get; set ;}
+
+
+
+
+
     }
 }

@@ -10,11 +10,11 @@ using System.Data.Entity.Validation;
 
 namespace SmartMealsWeb.Controllers
 {
-    public class MealsController : Controller
+    public class MealController : Controller
     {
         private ApplicationDbContext _context;
 
-        public MealsController()
+        public MealController()
         {
             _context = new ApplicationDbContext();
         }
@@ -52,7 +52,7 @@ namespace SmartMealsWeb.Controllers
             var mealTypes = _context.MealTypes.ToList();
             var viewModel = new MealFromViewModel
             {
-                Meal = new Meal(),
+               
                 MealType = mealTypes
 
             };
@@ -70,16 +70,20 @@ namespace SmartMealsWeb.Controllers
 
                 var viewModel = new MealFromViewModel
                 {
-                    Meal = meal,
+                  
                     MealType = _context.MealTypes.ToList()
 
                 };
                 return View("MealFrom", viewModel);
             }
             if (meal.Id == 0)
+            {
 
                 //in memory only 
+                meal.DatePosted = DateTime.Now;
+
                 _context.Meals.Add(meal);
+            }
 
             else
             {
@@ -88,7 +92,7 @@ namespace SmartMealsWeb.Controllers
                 mealDbContext.MealTypeID = meal.MealTypeID;
                 mealDbContext.Description = meal.Description;
                 mealDbContext.DatePosted = meal.DatePosted;
-                
+
             }
 
             try
@@ -117,9 +121,7 @@ namespace SmartMealsWeb.Controllers
 
             var MealViewModel = new MealFromViewModel()
             {
-                
-                Meal= meal,
-
+               
                 MealType = _context.MealTypes.ToList()
             };
             return View("MealForm", MealViewModel);

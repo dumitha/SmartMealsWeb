@@ -6,14 +6,10 @@ using SmartMealsWeb.Models;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace SmartMealsWeb.ViewModel
+namespace SmartMealsWeb.Dtos
 {
-    public class MealFromViewModel
+    public class MealDto
     {
-       // public Meal Meal { get; set; }
-
-        public IEnumerable<MealType> MealType { get; set; }
-
 
         [Required]
         [StringLength(255)]
@@ -25,9 +21,16 @@ namespace SmartMealsWeb.ViewModel
 
         public string Description { get; set; }
 
-        [Display(Name = "Date posted")]
+        
         //public DateTime? DatePosted { get; set; }
         public DateTime DatePosted = DateTime.Now;
+
+        public MealType MealType { get; set; }
+
+        
+        public byte MealTypeID { get; set; }
+
+
 
 
     }

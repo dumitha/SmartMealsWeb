@@ -9,7 +9,7 @@ namespace SmartMealsWeb.Models
     {
         public byte Id { get; set; }
         public string Name { get; set; }
-        //  public byte DurationInMonths { get; set; }
+        
 
 
         public static readonly byte Breakfast = 0;

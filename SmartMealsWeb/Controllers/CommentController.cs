@@ -12,7 +12,7 @@ using SmartMealsWeb.Models;
 
 namespace SmartMealsWeb.Controllers
 {
-    public class CommentsController : ApiController
+    public class CommentController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
