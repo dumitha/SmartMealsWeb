@@ -53,7 +53,7 @@ namespace SmartMealsWeb.Controllers
             var viewModel = new MealFromViewModel
             {
                
-                MealType = mealTypes
+                MealTypes = mealTypes
 
             };
 
@@ -71,7 +71,7 @@ namespace SmartMealsWeb.Controllers
                 var viewModel = new MealFromViewModel
                 {
                   
-                    MealType = _context.MealTypes.ToList()
+                    MealTypes = _context.MealTypes.ToList()
 
                 };
                 return View("MealFrom", viewModel);
@@ -122,7 +122,7 @@ namespace SmartMealsWeb.Controllers
             var MealViewModel = new MealFromViewModel()
             {
                
-                MealType = _context.MealTypes.ToList()
+                MealTypes = _context.MealTypes.ToList()
             };
             return View("MealForm", MealViewModel);
 

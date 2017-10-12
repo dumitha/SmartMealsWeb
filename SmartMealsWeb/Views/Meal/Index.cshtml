@@ -24,7 +24,7 @@
                 @foreach (var meal in Model)
                 {
                     <tr>
-                        <td>@Html.ActionLink(meal.Name, "Index", "Meals", new { id = meal.Id }, null)</td>
+                        <td>@Html.ActionLink(meal.Name, "Index", "Meal", new { id = meal.Id }, null)</td>
                         <td>@meal.MealType.Name</td>
                     </tr>
                 }

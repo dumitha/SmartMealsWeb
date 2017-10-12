@@ -22,10 +22,10 @@ namespace SmartMealsWeb.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+
         // GET /api/friends
         public IHttpActionResult GetFriends(string query = null)
         {
-            //return _context.Friends.ToList().Select(Mapper.Map<Friend, FriendDto>);
 
             var friendsQuery = _context.Friends
                .Include(f => f.MealPlanType);

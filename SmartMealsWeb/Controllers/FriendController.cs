@@ -35,7 +35,7 @@ namespace SmartMealsWeb.Controllers
 
        public ActionResult FriendProfile(int id)
         {
-            var friend = _context.Friends.SingleOrDefault(u => u.Id == id);
+            var friend = _context.Friends.SingleOrDefault(f => f.Id == id);
 
             if (friend == null)
                 return HttpNotFound();
@@ -45,13 +45,13 @@ namespace SmartMealsWeb.Controllers
                 Friend = friend,
                 MealPlanType = _context.MealPlanTypes.ToList()
 
-
+            
             };
 
             return View("FriendProfile", viewModel);
         }                       
 
-        public ViewResult FriendsSearch(string searchCriteria)
+        public ViewResult FriendSearch(string searchCriteria)
         {
 
             var FriendsList = new List<Friend>();
@@ -69,7 +69,7 @@ namespace SmartMealsWeb.Controllers
             }
 
 
-            return View("FriendsSearch", FriendsList);
+            return View("FriendSearch", FriendsList);
         }
 
         public ViewResult NewFriend()
@@ -129,7 +129,7 @@ namespace SmartMealsWeb.Controllers
             
             //rederict user back to list of friends
             //"Index" in Friends Controller
-            return RedirectToAction("Index", "Friends");
+            return RedirectToAction("Index", "Friend");
         }
 
         public ActionResult Edit(int id)

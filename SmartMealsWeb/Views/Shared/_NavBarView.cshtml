@@ -10,11 +10,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("My Meals", "Index", "Meals")</li>
-                <li>@Html.ActionLink("NewsFeed", "Index", "Friends")</li>
-                <li>@Html.ActionLink("New Meal", "NewMeal", "Meals")</li>
+                <li>@Html.ActionLink("My Meals", "Index", "Meal")</li>
+                <li>@Html.ActionLink("NewsFeed", "Index", "Friend")</li>
+                <li>@Html.ActionLink("New Meal", "NewMeal", "Meal")</li>
                 <li>
-                    @using (Html.BeginForm("FriendsSearch", "Friends"))
+                    @using (Html.BeginForm("FriendSearch", "Friend"))
                     {
                         @Html.TextBox("SearchCriteria", null, new { @class = "form-control"})<button type="submit" class="btn btn-primary">Search</button>
                     

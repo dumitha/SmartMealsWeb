@@ -12,7 +12,7 @@ namespace SmartMealsWeb.ViewModel
     {
        // public Meal Meal { get; set; }
 
-        public IEnumerable<MealType> MealType { get; set; }
+        public IEnumerable<MealType> MealTypes { get; set; }
 
 
         [Required]
@@ -20,6 +20,10 @@ namespace SmartMealsWeb.ViewModel
         public string Name { get; set; }
 
         public int Id { get; set; }
+
+        [Display(Name = "Meal Type")]
+        [Required]
+        public byte? MealTypeId { get; set; }
 
         //public string Type { get; set; }
 
