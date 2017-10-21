@@ -13,11 +13,12 @@
     }
     else
     {
-        <table class="table table-bordered table-hover">
+        <table id ="meals"class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Meal</th>
                     <th>Meal Type</th>
+                    <th>Delete Meal</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +27,66 @@
                     <tr>
                         <td>@Html.ActionLink(meal.Name, "Index", "Meal", new { id = meal.Id }, null)</td>
                         <td>@meal.MealType.Name</td>
+                        <td></td>
                     </tr>
                 }
 
 
             </tbody>
         </table>
+
+
+        @section scripts
+    {
+            <script>
+       $(document).ready(function () {
+
+           $("#meals").DataTable({
+               ajax: {
+                   url: "/api/meals",
+                   dataSrc: ""
+               },
+               columns: [
+                   {
+                       data: "name",
+                       render: function (data, type, meal) {
+                           return "<a href='/meals/edit/" + meal.id + "'>" + meal.name + "</a>";
+                       }
+                   },
+                   {
+                       data: "mealType.name"
+                   },
+                   {
+                       data: "id",
+                       render: function (data) {
+                           return "<button class= 'btn-link js-delete' data-meal-id=" + data + ">Delete</button>";
+                       }
+                   }
+               ]
+           }
+               );
+
+           $("#meals").on("click", ".js-delete", function () {
+               var button = $(this);
+
+               bootbox.confirm("Are you sure you want to delete this meal?", function (result) {
+                   if (result) {
+                       $.ajax({
+                           url: "api/meals/" + button.attr("data-meal-id"),
+                           method: "DELETE",
+                           sucess: function() {
+                               button.parents("tr").remove();
+                           }
+                       });
+
+                   }
+               });
+
+           });
+       });
+
+
+            </script>
+            }
+
     }

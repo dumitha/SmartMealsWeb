@@ -19,19 +19,24 @@ namespace SmartMealsWeb.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<MealDto> GetMeals(string query = null)
+        
+        // GET /api/myMeals
+        public IHttpActionResult GetMeals(string query = null)
         {
+
             var mealsQuery = _context.Meals
-                .Include(m => m.Description);
+               .Include(m => m.MealType);
 
             if (!String.IsNullOrWhiteSpace(query))
                 mealsQuery = mealsQuery.Where(m => m.Name.Contains(query));
 
-            return mealsQuery
+            var mealDtos = mealsQuery
                 .ToList()
                 .Select(Mapper.Map<Meal, MealDto>);
-                
+
+            return Ok(mealDtos);
         }
+
 
         public IHttpActionResult GetMeal(int id)
         {

@@ -22,7 +22,7 @@ namespace SmartMealsWeb.Dtos
 
         
         public byte MealPlanTypeID { get; set; }
-
+        public MealPlanTypeDto MealPlanType { get; set; }
       
       //  [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }

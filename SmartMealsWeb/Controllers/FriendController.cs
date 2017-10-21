@@ -27,10 +27,10 @@ namespace SmartMealsWeb.Controllers
         // GET: Friend/Index
         public ViewResult Index()
         {
-            var friends = _context.Friends.Include(f => f.MealPlanType).ToList();
+            //var friends = _context.Friends.Include(f => f.MealPlanType).ToList();
 
 
-            return View(friends);
+            return View();
         }
 
        public ActionResult FriendProfile(int id)
