@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SmartMealsWeb.Models.Friend>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Friends</h2>
+
+
+<table id="friends" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Friend</th>
+            <th>Meal Plan</th>
+            <th>Meal Post</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section scripts
+{
+   <script>
+       $(document).ready(function () {
+
+           $("#friends").DataTable({
+               ajax: {
+                   url: "/api/friends",
+                   dataSrc: ""
+               },
+               columns: [
+                   {
+                       data: "name",
+                       render: function (data, type, friend) {
+                           return "<a href='/friend/friendProfile/" + friend.id + "'>" + friend.name + "</a>";
+                       }
+                   },
+                   {
+                       data: "mealPlanType.name"
+                   },
+                   {
+                       data: "id",
+                       render: function (data) {
+                           return "<button class= 'btn-link js-delete' data-friend-id=" + data + ">Unfriend</button>";
+                       }
+                   }
+               ]
+           }
+               );
+           
+           $("#friends").on("click", ".js-delete", function () {
+               var button = $(this);
+
+               bootbox.confirm("Are you sure you want to unfriend this person?", function (result) {
+                   if (result) {
+                       $.ajax({
+                           url: "api/friends/" + button.attr("data-friend-id"),
+                           method: "DELETE",
+                           sucess: function() {
+                               button.parents("tr").remove();
+                           }
+                       });
+
+                   }
+               });
+
+           });
+       });
+     
+                     
+</script>
+
+}

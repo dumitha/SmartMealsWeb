@@ -9,19 +9,30 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartMealsWeb.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace SmartMealsWeb.Controllers
 {
     [Authorize]
     public class AccountController : Controller
+
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
+      
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        /*public AccountController()
+        {
+        }
+        */
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -149,12 +160,38 @@ namespace SmartMealsWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+           // model.GoalSettings = _context.GoalSettings.ToList();
+         
+        
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    IsCompetingWithOtherUsers = model.IsCompetingWithOtherUsers,
+                    PhoneNumberFriend = model.PhoneNumberFriend
+
+                   // GoalSettings = model.GoalSettings
+                    
+
+                };
+
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
+
                 {
+
+                    //Temp code
+                   /* var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole("CanManageMeals"));
+                    await UserManager.AddToRoleAsync(user.Id, "CanManageMeals");
+                */
+
+
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -163,7 +200,7 @@ namespace SmartMealsWeb.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("NewFriend", "Friend");
                 }
                 AddErrors(result);
             }
@@ -367,10 +404,18 @@ namespace SmartMealsWeb.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    IsCompetingWithOtherUsers = model.IsCompetingWithOtherUsers,
+                    PhoneNumberFriend = model.PhoneNumberFriend
+
+                };
+
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
@@ -405,6 +450,7 @@ namespace SmartMealsWeb.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            _context.Dispose();
             if (disposing)
             {
                 if (_userManager != null)

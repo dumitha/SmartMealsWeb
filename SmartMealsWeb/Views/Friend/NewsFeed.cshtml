@@ -13,7 +13,8 @@
         <tr>
             <th>Friend</th>
             <th>Meal Plan</th>
-            <th>Unfriend</th>
+            <th>Delete Meal</th>
+            <th>Block User</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -34,7 +35,7 @@
                    {
                        data: "name",
                        render: function (data, type, friend) {
-                           return "<a href='/friends/edit/" + friend.id + "'>" + friend.name + "</a>";
+                           return "<a href='/friend/Edit/" + friend.id + "'>" + friend.name + "</a>";
                        }
                    },
                    {
@@ -46,6 +47,7 @@
                            return "<button class= 'btn-link js-delete' data-friend-id=" + data + ">Delete</button>";
                        }
                    }
+
                ]
            }
                );

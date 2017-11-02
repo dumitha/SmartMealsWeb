@@ -9,6 +9,7 @@ namespace SmartMealsWeb.Models
     public class Friend
     {
         [Required(ErrorMessage = "Name is required")]
+        [Display(Name="Username")]
         public string Name { get; set; }
 
         //will get initialized to 0

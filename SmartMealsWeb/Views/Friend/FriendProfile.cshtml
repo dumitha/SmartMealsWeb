@@ -6,10 +6,60 @@
 
 <h2>@Model.Friend.Name</h2>
 
-<ul>
-    <li>Meal Plan: @Model.Friend.MealPlanType.Name</li>
-    @if (Model.Friend.Birthdate.HasValue)
-    {
-        <li>Birthdate: @Model.Friend.Birthdate.Value.ToShortDateString()</li>
+
+
+
+
+
+<table id="friend" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            
+            @if (Model.Friend.Birthdate.HasValue)
+            {
+                <th>Birthdate: @Model.Friend.Birthdate.Value.ToShortDateString()</th>
+            }
+            <th>Meal Plan</th>
+            <th>Yums</th>
+            
+           
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<button class='btn js-delete' data-friend-id=data>Unfriend</button>
+
+@section scripts
+{
+    <script>
+      
+
+           $("#friend").on("click", ".js-delete", function () {
+               var button = $(this);
+
+               bootbox.confirm("Are you sure you want to unfriend this person?", function (result) {
+                   if (result) {
+                       $.ajax({
+                           url: "api/friend/" + button.attr("data-friend-id"),
+                           method: "DELETE",
+                           sucess: function() {
+                               button.parents("tr").remove();
+                           }
+                       });
+
+                   }
+               });
+
+           });
+      
+
+
+    </script>
     }
-</ul>
+
+
+
+              
+
+    
+

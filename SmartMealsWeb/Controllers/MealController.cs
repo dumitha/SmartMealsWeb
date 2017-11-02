@@ -27,25 +27,17 @@ namespace SmartMealsWeb.Controllers
 
         public ViewResult Index()
         {
-            var meals = _context.Meals.Include(m => m.MealType).ToList();
+            //var meals = _context.Meals.Include(m => m.MealType).ToList();
 
 
-
-            return View(meals);
+            if (User.IsInRole(RoleName.CanManageMeals))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
-        
-        /*public ActionResult PostMeal(Meal meal)
-        {
-            //in memory only 
-            _context.Meals.Add(meal);
-            _context.SaveChanges();
+       
 
-            //rederict user back to list of meals
-            //"ViewMeals" in Meals Controller
-            return RedirectToAction("ViewMeals", "Meals");
-
-        }*/
+        [Authorize(Roles = RoleName.CanManageMeals)]
         public ViewResult NewMeal()
         {
             //get a list of the meal types first 

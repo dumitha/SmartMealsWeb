@@ -29,12 +29,14 @@
         @Html.ValidationMessageFor(m => m.Friend.MealPlanType)
 
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GoalSettingId)
+        @Html.DropDownListFor(m => m.GoalSettingId, new SelectList(Model.GoalSettings, "Id", "Name"), "Select a Goal", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GoalSettingId)
 
-    <div class="checkbox">
-        <label>
-            @Html.CheckBoxFor(m => m.Friend.IsCompetingWithOtherUsers) Competing with friends?
-        </label>
     </div>
+
+    
     @Html.HiddenFor(m=> m.Friend.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>

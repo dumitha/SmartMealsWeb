@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace SmartMealsWeb.Controllers
 {
     [AllowAnonymous]
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

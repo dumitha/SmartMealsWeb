@@ -84,6 +84,7 @@ namespace SmartMealsWeb.Controllers.Api
 
         [HttpDelete]
         //[Authorize(Roles = RoleName.CanManageMovies)]
+
         public IHttpActionResult DeleteMeal(int id)
         {
             var mealInDb = _context.Meals.SingleOrDefault(m => m.Id == id);

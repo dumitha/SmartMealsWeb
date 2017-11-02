@@ -7,12 +7,13 @@
     }
 
     <h2>Meals</h2>
-    @if (!Model.Any())
-    {
-        <p>You don't have any Meals yet.</p>
-    }
-    else
-    {
+       
+        <p>
+            @Html.ActionLink("New Meal", "New", "Meals", null, new { @class = "btn btn-primary" })
+        </p>
+    
+    
+ 
         <table id ="meals"class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -22,16 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var meal in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(meal.Name, "Index", "Meal", new { id = meal.Id }, null)</td>
-                        <td>@meal.MealType.Name</td>
-                        <td></td>
-                    </tr>
-                }
-
-
+              
             </tbody>
         </table>
 
@@ -87,6 +79,6 @@
 
 
             </script>
-            }
+            
 
     }

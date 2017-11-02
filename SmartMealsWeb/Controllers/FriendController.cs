@@ -29,8 +29,9 @@ namespace SmartMealsWeb.Controllers
         {
             //var friends = _context.Friends.Include(f => f.MealPlanType).ToList();
 
-
-            return View();
+            if (User.IsInRole("CanManageMeals"))
+                return View("NewsFeed");
+            return View("NewsFeedReadOnly");
         }
 
        public ActionResult FriendProfile(int id)
@@ -76,10 +77,12 @@ namespace SmartMealsWeb.Controllers
         {
             //get a list of the meal types first 
             var mealTypes = _context.MealPlanTypes.ToList();
+            var goalSetting = _context.GoalSettings.ToList();
             var viewModel = new FriendFormViewModel
             {
                 Friend = new Friend(),
-                MealPlanType = mealTypes
+                MealPlanType = mealTypes,
+                GoalSettings = goalSetting
             };
             return View("FriendForm",viewModel);
         }
